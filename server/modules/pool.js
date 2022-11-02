@@ -1,9 +1,20 @@
 const pg = require('pg');
 
-// DATABASE_HOST=
+/*
 
-let pool = new pg.Pool({
+*/
+
+let pool;
+
+
+if(process.env.DATABASE_URL){
+  pool = new pg.Pool({
+    connectionString: process.env.DATABASE_URL
+  })
+}
+else{ 
+pool = new pg.Pool({
   database: "cloud-todo"
-});
+});}
 
 module.exports = pool;
